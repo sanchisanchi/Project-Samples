@@ -1,0 +1,19 @@
+README
+======
+
+* Emberjs: contain the Ember.js as downloaded from the website.
+* Foundation: contain the Zurb Foundation version 4.3.1 as downloaded from the website.
+	- Remove robots.txt to be unsearchable.
+
+
+* How to compile the files into one:
+	- Develop and write code on each module separately.
+	- Make sure to add the new file in __files.txt__.
+	- Run __compiler.py__ using Python 2.7.5 or similar versions.
+	- Open __index.html__ to test.
+	- Don't worry about merging conflicts for index.html since that file is generated dynamically.
+
+
+* Test routing:
+	- Open index.html
+	- Try #/employer/inc2759/public or #/employer/com8821/public

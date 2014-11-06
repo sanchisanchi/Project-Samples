@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+ 
+  <title>MyCandidates</title>
+
+  	<!-- Include this section in every files -->
+  	<!-- Style -->
+  	<!-- Awesome Fonts KEEP AT TOP -->
+	<link rel="stylesheet" href="libs/font-awesome-4.0.3/css/font-awesome.min.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" /> 
+	<link rel="stylesheet" href="http://f.fontdeck.com/s/css/uH5+KWQnibDTJRYggGJ9XZLTAgw/localhost/39793.css" type="text/css" />
+	<link rel="stylesheet" href="libs/Foundation/css/foundation.css" />
+	<link rel="stylesheet" href="css/customStyles.css" /> 
+	<link rel="stylesheet" href="css/customScreens.css" /> 
+	<link rel="stylesheet" href="libs/Foundation/css/normalize.css" /> 
+
+	<!-- Scripts -->
+	<script src="libs/Foundation/js/vendor/custom.modernizr.js" type="text/javascript"></script>
+  	<script src="libs/EmberJs/js/libs/jquery-1.9.1.js" type="text/javascript"></script>
+  	<script src="libs/EmberJs/js/libs/handlebars-1.0.0.js" type="text/javascript"></script>
+  	<script src="libs/EmberJs/js/libs/ember-1.0.0.js" type="text/javascript"></script>
+  	<script src="js/app.js" type="text/javascript"></script>
+	<script src="js/add-note.js" type="text/javascript"></script>
+	<script src="js/stacktable.js" type="text/javascript"></script>
+	
+  	<!-- Scripts for Google Charts -->
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>	
+    <script src="js/googleCharts.js"></script>
+    <!-- End of section -->
+</head>
+<body>
+	<!-- MARK: Menu bar goes here -->
+	<!-- Menu bar -->
+	<script type="text/x-handlebars">		
+	    <div class="contain-to-grid fixed">
+			<nav class="top-bar">																
+				<ul class="title-area">
+					<!-- Title Area -->
+					<li class="name">
+						<div id="sitename">
+							<div id="sitename_big"><a href="#">my</a></div><div id="sitename_small"><a href="#">candidates for Roto Rooter</a></div>
+						<div id="tagline">
+							<span class="subtitle">recruiting essentials</span>
+						</div>
+						
+						</div>
+					</li>
+					<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+					<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+				</ul>
+				
+					<section class="top-bar-section">
+						<!-- Left Nav Section -->
+						<ul class="right">
+							<li class="divider"></li>
+							<li><a href="#">Features</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Join Now</a></li>
+							<li class="divider"></li>
+							<li>
+								{{#if isSignedIn}}
+									<a {{action 'signOut'}}> Sign-out </a>
+								{{else}}
+									<a {{action 'signIn'}}> Employer Sign-in </a>
+								{{/if}}
+							</li>
+							<li class="divider"></li>
+						</ul>
+					</section>					
+			</nav>			
+		</div>
+		
+	<!-- Main section -->
+	<section class="main">
+		<div class="row">
+			<div class="large-12 small-12 columns">
+				<ul class="breadcrumbs">
+					<li {{bind-attr class="indexIsCurrent"}}> {{#link-to 'index'}} MyCandidates {{/link-to}} </li>
+					{{#each mark in applicationTrail}}
+						<li {{bind-attr class="mark.isCurrent"}}> {{#link-to mark.link.name mark.link.model}} {{mark.label}} {{/link-to}} </li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	</section>
+	{{outlet}}
+	<section class="bottom-bar-section">
+		<div class="contain-to-grid bottom-fixed">
+			<div class="bottom-bar">
+				<div class="row">	
+				</div>	
+			</div>
+		</div>
+	</section>
+	</script>
+
+	<!-- MARK: End menu bar -->
+
+	<!-- MARK: Content goes here -->
+	<!-- Begin Home Page -->
+	<script type="text/x-handlebars" id="index">
+		<div class="row">
+			<div id="homehero" class="large-12 columns">
+				<h1>An ATS for you, for free.</h1>
+				<ol class="orderedlist">
+					<li>Register for your FREE account.</li>
+					<li>Get a branded 'Careers Website' for your company.</li>
+					<li>Post jobs for FREE.</li>
+					<li>Advertise your jobs with the top job boards.</li>
+					<li>Manage Candidates & the hiring process.</li>
+					<li>Use Hotlists to keep in touch with good candidates.</li>
+				</ol>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="large-6 large-centered columns">
+				<br /><br /><br />
+				<a href="#" class="button expand radius">Register your FREE account now...</a>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="large-12 columns">
+				<br /><br /><br />
+				<h3>Free! Unlimited jobs & unlimited candidates.</h3>
+				<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</p>
+			</div>
+		</div>	
+
+		<div class="row">
+			<div class="large-12 columns">
+				<h3>Manage your entire hiring process from one place.</h3>
+				<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</p>
+			</div>
+		</div>	
+
+		<div class="row">
+			<div class="large-12 columns">
+				<h3>Keep in touch with great candidates.</h3>
+				<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</p>
+			</div>
+		</div>	
+
+		<div class="row">
+			<div class="large-12 columns">
+				<h3>Market your jobs to the top job boards.</h3>
+				<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</p>
+			</div>
+		</div>	
+	</script>
+	<!-- End Home Page -->
+
+	<!-- Begin Public Employer template -->
+	<script type="text/x-handlebars" id="employerPublic">	
+		<!-- The Company Info and Apply button-->
+	  	<div class="row">		
+			<div class="large-12 columns">
+				<div class="panel info-area">
+					<div class="row">
+						<div class="large-9 columns">
+							<h3>{{name}}</h3>
+							<a {{bind-attr href="website"}}>
+								<img id="employer-img" src="img/rotoRooterName.png" />
+							</a>
+							<ul class="no-bullets">
+								<li>{{address1}}</li>
+								<li>{{city}}, {{state}} {{postalCode}}</li>
+								<li> <a {{bind-attr href="website"}}> {{website}} </a> </li>
+								<li>{{email}}</li>
+								<li>{{phone}}</li>
+							</ul>
+						</div>
+						<div class="large-3 columns">
+							{{#link-to 'applyEmployer' this classNames="button round"}} <i class="fa fa-arrow-right"></i> Apply Now {{/link-to}}
+						</div>
+					</div>
+				</div>
+				
+				<div class="hr">
+					<h3>Jobs</h3>
+				</div>
+				<table class="job-list">
+					<tbody>
+						<tr align="left">
+							<th class="hide-for-small"> Apply </th>
+							<th> Job ID </th>
+							<th> Position </th>
+							<th> Location </th>
+							<th> Date Posted </th>								
+						</tr>
+					{{#each item in jobs}}
+					{{#with item}}	
+					<tr class="job-list-top">
+						<td class="hide-for-small" rowspan="2"> <h5> {{#link-to 'applyJob' this}} <i class="fa fa-arrow-right"></i> Apply {{/link-to}} </h5> </td>						
+						<td>{{#link-to 'jobPublic' this}} {{id}} {{/link-to}}</td>
+						<td>{{title}}</td>
+						<td>{{location}}</td>
+						<td>{{datePosted}}</td>
+								
+					</tr>
+					<tr>
+						<td colspan="5"><strong>Description: </strong> {{description}} </td>
+					</tr>
+					{{/with}}
+					{{/each}}
+					</tbody>
+				</table>	
+			</div>
+		</div>
+	</script>
+	<!-- End public employer template -->
+
+	<!-- Begin Public Job Template -->
+	<script type="text/x-handlebars" id="jobPublic">
+	<div class="row">
+		<div class="large-12 columns">
+			<div class="panel info-area">
+				<div class="row">
+					<div class="large-9 columns">
+						<!-- Job Information -->
+						<table class="info-area">
+							<tbody>
+								<tr>
+									<th width="10%">Employer:</th>
+									<td>{{#link-to 'employerPublic' this}} {{employerName}} {{/link-to}}</td>
+								</tr>
+								<tr>
+									<th>Job ID:</th>
+									<td>{{id}}</td>
+								</tr>
+								<tr>
+									<th>Job Title:</th>
+									<td>{{title}}</td>
+								</tr>
+							</tbody>
+						</table>
+						<!-- Job information ends -->
+					</div>
+					<div class="large-3 columns">
+						{{#link-to 'applyJob' this classNames="button round"}} <i class="fa fa-arrow-right"></i> Apply Now {{/link-to}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Job description -->
+	<div class="row">
+		<div class="large-12 columns">
+			<div class="hr">
+				<h4>Description</h4>
+			</div>
+			<div class="panel info-area">
+				<p> {{description}} </p>
+			</div>
+		</div>
+	</div>
+	<!-- Job description ends -->
+	
+	<div class="row">
+		<!-- Job information -->
+		<div class="large-6 columns">
+			<div class="hr">
+				<h4>Information</h4>
+			</div>
+			<div class="panel info-area">
+				<table class="info-area">
+		            <tr>
+		            	<th width="41%"> Number of Positions: </th>
+		            	<td> {{numOfPositions}} </td>
+		            </tr>
+		            <tr>
+		            	<th> Required Experience: </th>
+		            	<td> {{experienceReq}} </td>
+		            </tr>
+		           	<tr>
+		            	<th> Required Education: </th>
+		            	<td> {{educationReq}} </td>
+		            </tr>
+		            <tr>
+		            	<th> Salary Range: </th>
+		            	<td> ${{salaryMin}} - ${{salaryMax}} </td>
+		            </tr>
+		            <tr>
+		            	<th> Other Requirements: </th>
+		            	<td> {{otherReq}} </td>
+		            </tr>
+		            <tr>
+		            	<th> Job Sectors: </th>
+		            	<td> {{sectors}} </td>
+		            </tr>
+		        </table>
+			</div>
+		</div>
+		<!-- Job information ends -->
+		<!-- Job location -->
+		<div class="large-6 columns">
+			<div class="hr">
+				<h4>Location</h4>
+			</div>
+			<div class="panel info-area">
+		        <table class="info-area">
+					<tr>
+		            	<th width="20%"> Country: </th>
+		            	<td> {{location.country}} </td>
+		            </tr>
+		            <tr>
+		            	<th> City: </th>
+		           		<td> {{location.city}} </td>
+		           	</tr>
+		           	<tr>
+		            	<th> State/Province: </th>
+		            	<td> {{location.state}} </td>
+		            </tr>
+		            <tr>
+		            	<th> Postal Code: </th>
+		            	<td> {{location.postalCode}} </td>
+		           	</tr>
+		        </table>
+			</div>
+		</div>	
+		<!-- Job location ends -->		
+	</div>
+	</script>
+	<!-- End Public Job Template -->
+
+	<!-- Apply to Employer Page -->
+	<script type="text/x-handlebars" id="applyEmployer">
+		<div class="row">
+			<div class="large-12 columns">
+				<h3>Applying to {{name}}</h3>
+				<div class="panel info-area">
+					<form method="post" enctype="text/plain">
+						<div class="row">
+							<div class="large-6 columns">
+								<label>First Name:</label>
+								<input id="firstName" class="ember-view ember-text-field" type="text" name="firstName"></input>
+							</div>
+							<div class="large-6 columns">
+								<label>Last Name:</label>
+								<input id="lastName" class="ember-view ember-text-field" type="text" name="lastName"></input>
+							</div>
+							<div class="large-12 columns">
+								<label>Address line 1:</label>
+								<input id="address1" class="ember-view ember-text-field" type="text" name="address1"></input>
+							</div>
+							<div class="large-12 columns">
+								<label>Address line 2:</label>
+								<input id="address2" class="ember-view ember-text-field" type="text" name="address2"></input>
+							</div>
+							<div class="large-5 columns">
+								<label>City:</label>
+								<input id="city" class="ember-view ember-text-field" type="text" name="city"></input>
+							</div>
+							<div class="large-2 columns">
+								<label>State:</label>
+								<input id="state" class="ember-view ember-text-field" type="text" name="state"></input>
+							</div>
+							<div class="large-5 columns">
+								<label>Zip:</label>
+								<input id="postalCode" class="ember-view ember-text-field" type="text" name="postalCode"></input>
+							</div>
+							<div class="large-6 columns">
+								<label>Phone:</label>
+								<input id="city" class="ember-view ember-text-field" type="text" name="city"></input>
+							</div>
+							<div class="large-6 columns">
+								<label>E-mail:</label>
+								<input id="emailAddress" class="ember-view ember-text-field" type="text" name="emailAddress"></input>
+							</div>
+							<div class="large-12 columns">
+								<label>Resume:</label>
+								<input id="upload1_file" type="file" name="upload1_file"></input><br>
+								<textarea rows="4" name="application" placeholder="Upload your resume or paste it here."></textarea>
+							</div>
+							<div class="large-12 columns"><br>
+								<label>Cover letter:</label>
+								<textarea rows="4" name="application" placeholder="Type or paste an optional cover letter here."></textarea>
+							</div>
+						</div>
+					</form>
+					<div align="left">
+						{{#link-to 'employerPublic' this classNames="button round"}} Submit {{/link-to}}
+						{{#link-to 'employerPublic' this classNames="button round"}} Cancel {{/link-to}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</script>
+	<!-- End Apply to Employer Page -->
+
+	<!-- Begin Apply to Job Page -->
+	<script type="text/x-handlebars" id="applyJob">
+		<div class="row">
+			<div class="large-12 columns">
+				<h3>Applying to {{employerName}} at Job#{{id}} - {{title}}</h3>
+				<div class="panel info-area">
+					<form method="post" enctype="text/plain">
+						<div class="row">
+							<div class="large-6 columns">
+								<label>First Name:</label>
+								<input id="firstName" class="ember-view ember-text-field" type="text" name="firstName"></input>
+							</div>
+							<div class="large-6 columns">
+								<label>Last Name:</label>
+								<input id="lastName" class="ember-view ember-text-field" type="text" name="lastName"></input>
+							</div>
+							<div class="large-12 columns">
+								<label>Address line 1:</label>
+								<input id="address1" class="ember-view ember-text-field" type="text" name="address1"></input>
+							</div>
+							<div class="large-12 columns">
+								<label>Address line 2:</label>
+								<input id="address2" class="ember-view ember-text-field" type="text" name="address2"></input>
+							</div>
+							<div class="large-5 columns">
+								<label>City:</label>
+								<input id="city" class="ember-view ember-text-field" type="text" name="city"></input>
+							</div>
+							<div class="large-2 columns">
+								<label>State:</label>
+								<input id="state" class="ember-view ember-text-field" type="text" name="state"></input>
+							</div>
+							<div class="large-5 columns">
+								<label>Zip:</label>
+								<input id="postalCode" class="ember-view ember-text-field" type="text" name="postalCode"></input>
+							</div>
+							<div class="large-6 columns">
+								<label>Phone:</label>
+								<input id="city" class="ember-view ember-text-field" type="text" name="city"></input>
+							</div>
+							<div class="large-6 columns">
+								<label>E-mail:</label>
+								<input id="emailAddress" class="ember-view ember-text-field" type="text" name="emailAddress"></input>
+							</div>
+							<div class="large-12 columns">
+								<label>Resume:</label>
+								<input id="upload1_file" type="file" name="upload1_file"></input><br>
+								<textarea rows="4" name="application" placeholder="Upload your resume or paste it here."></textarea>
+							</div>
+							<div class="large-12 columns"><br>
+								<label>Cover letter:</label>
+								<textarea rows="4" name="application" placeholder="Type or paste an optional cover letter here."></textarea>
+							</div>
+						</div>
+					</form>
+					<div align="left">
+						{{#link-to 'employerPublic' this classNames="button round"}} Submit {{/link-to}}
+						{{#link-to 'employerPublic' this classNames="button round"}} Cancel {{/link-to}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</script>
+	<!-- End Apply to Job Page -->
+
+	<!-- Begin Sign In Page -->
+	<script type="text/x-handlebars" id="signin">
+		<div class="row">
+			<div class="large-12 columns">
+				<div class="row">
+					<div class="large-3 columns"> &nbsp;</div>
+					<div class="large-6 columns"> 
+						<div align="center"><h3>Sign in to MyCandidates.com</h3></div>
+						<div class="panel info-area">
+							<form type="submit" name="signInBox">
+								User ID:<br>
+								{{input value=username placeholder="Username"}}
+								Password:<br>
+								{{input placeholder="Password"}}
+								<!--<h5 style="float:left;"  {{action 'signIn'}} ><i class="fa fa-user"></i> Sign In </h5>
+								<!--<h5  style="float:right;">{{#link-to 'index'}} <font color="#FF0000"><i class="fa fa-times"></i></font> Cancel {{/link-to}}</h5>-->
+								<br>
+								<input type="button" value="Sign-in" {{action 'signIn'}}>
+								<input type="button" value="Cancel" onclick="location.href='#';">
+							</form>
+						</div>
+					</div>
+					<div class="large-3 columns"> &nbsp;</div>
+				</div>
+			</div>
+		</div>
+	</script>
+	<!-- End Sign In Page -->
+
+	<!-- Begin Private Employer template -->
+	<script type="text/x-handlebars" id="employerPrivate">		
+		<!-- Company Info-->
+		<div class="row">
+			<div class="large-12 columns">
+				<div class="panel info-area">
+					<div class="row">
+						{{#with content}}	
+						<div class="large-9 columns">
+							<h3>{{name}}</h3>
+							<a {{bind-attr href="website"}}>
+								<img id="employer-img" src="img/rotoRooterName.png" />
+							</a>
+							<ul class="no-bullets">
+								<li>{{address1}}</li>
+								<li>{{city}}, {{state}}-{{postalCode}}</li>
+								<li> <a {{bind-attr href="website"}}> {{website}} </a> </li>
+								<li>{{email}}</li>
+								<li>{{phone}}</li>
+							</ul>
+						</div>
+						<div class="large-3 columns">
+							<h5><a href="#" data-reveal-id="firstModals"><i class="fa fa-pencil-square-o"></i> Edit Info</a></h5>
+							<h5>{{#link-to 'employerPublic' this}}<i class="fa fa-search"></i> View Public Profile {{/link-to}}</h5>
+							<h5>{{#link-to 'addJob' this}}<i class="fa fa-plus-square"></i> Add New Job {{/link-to}}</h5>
+						</div>
+						{{/with}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Company Info-->
+		
+		<div class="row">
+			<div class="large-12 columns">
+				<div class="row">
+					<!-- Total Candidates Panel -->
+					<div class="large-8 columns">
+						<div class="hr">
+							<h4>Total Candidates</h4>
+						</div>
+						<div class="panel info-area">
+							<div class="row">	   
+								{{#view App.ChartView content="chart_divTotal"}}
+								<div id="chart_divTotal" style="align: center; height: 225px; top: -15px;"></div>
+								{{/view}}
+								{{view Ember.Select
+								contentBinding=candidateLists
+								valueBinding=selectedList
+								prompt="Select a list"}}<br><br>
+								<a {{action 'selectCandidateList'}}> <i class="fa fa-search"></i>  View selected list </a>	      
+							</div>	
+						</div>	
+						<!-- End Total Candidates Panel -->
+						<!-- Job Panel -->
+						<div class="hr">
+							<h4>Jobs List</h4>
+						</div>
+						{{#each job in content.jobs}}
+						<div class="panel info-area">
+							Job ID: {{#link-to 'jobPrivate' job}} #{{job.id}} {{/link-to}} <span style="float: right">{{job.title}} </span>
+							<p class="jobCard"> {{job.location}} <span style="float: right"> {{job.candidateSummary.viewed}} Views </span></p>				
+							<div class="row">
+								{{#view App.ChartView contentBinding=job.id}}
+								<div {{bind-attr id="job.id"}} style="align: center; height: 225px; top: -20px;"></div>
+								{{/view}}
+								{{view Ember.Select
+								contentBinding=candidateLists
+								valueBinding=job.selectedList
+								prompt="Select a list"}}<br><br>
+								<a {{action 'selectCandidateList' job.id}}> <i class="fa fa-search"></i>  View selected list </a>
+							</div>	
+						</div>
+						{{/each}}
+						<!-- End Job Panel -->
+					</div>
+					<!-- Events Panel -->
+					<div class="large-4 columns">
+						<div class="hr">
+							<h4>Events</h4>
+						</div>
+						<div class="panel info-area">
+							<h5><a href="#" data-reveal-id="firstModal_note"><i class="fa fa-file-text"></i> Add Note </a></h5>
+							<ul id="event" class="event-list">
+								{{#each anEvent in content.events}}
+								{{#with anEvent}}
+								<li>
+									<div class="row">
+										<div class="large-6 small-6 columns">
+											{{createdDate}}
+										</div>
+										<div class="large-6 small-6 columns">
+											{{user}}
+										</div>
+									</div>
+									<div class="row">
+										<div class="large-12 small-12 columns">
+											{{content}}
+										</div>
+									</div>
+								</li>
+							{{/with}}
+							{{/each}}
+							</ul>
+						</div>
+					</div>
+					<!-- End Events Panel -->
+				</div>
+			</div>
+	  	</div>  
+		<!-- Reveal modal -->
+		<div id="firstModals" class="reveal-modal">
+			{{#with content}}
+			<div class="row">
+				<div class="large-12 small-12 columns candidate-list-section">
+					<form>
+						<div class="row">
+							<div class="large-12 columns">
+								<label>Company Logo</label>
+								<br>
+								<input type="file" name="pic" accept="image/*">
+							</div>
+							<div class="large-12 columns">
+								<label>Company Name</label>						
+								{{input type="text" name="company_name" id="company_name" value=name}}
+							</div>
+						</div>
+						<div class="row">
+							<div class="large-12 columns">
+								<label>Address1</label>
+								{{input type="text" name="address1" id="address1" value=address1}}
+							</div>
+							<div class="large-8 columns">
+								<div class="row collapse">
+									<label>Address2</label>
+									{{input type="text" name="address2" id="address2" value=address2}}
+								</div>
+							</div>
+							<div class="large-2 columns">
+								<label>City</label>
+								{{input type="text" name="city" id="city" value=city}}
+							</div>
+							<div class="large-2 columns">
+								<label>Zip Code</label>
+								{{input type="text" name="zipcode" id="zipcode" value=postalCode}}
+							</div>								
+						</div>
+						<div class="row">
+							<div class="large-1 columns">
+								<label>State</label>
+								{{input type="text" name="state" id="state" value=state}}
+							</div>
+							<div class="large-3 columns">
+								<label>Phone Number</label>
+								{{input type="text" name="phone_number" id="phone_number" value=phone}}
+							</div>
+							<div class="large-4 columns">
+								<div class="row collapse">						
+									<label>Website</label>
+									<div class="small-9 columns">
+										{{input type="text" name="website" id="website" value=website}}
+									</div>
+									<div class="small-3 columns">
+										<!-- <span class="postfix">.com</span> -->
+									</div>
+								</div>
+							</div>						
+							<div class="large-4 columns">
+								<div class="row collapse">						
+									<label>E-mail</label>
+									<div class="small-9 columns">
+										{{input type="text" name="email_id" id="email_id" value=email}}
+									</div>
+									<div class="small-3 columns">
+										<!-- <span class="postfix">.com</span> -->
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="large-12 columns">
+								<br>
+								<a class="close-reveal-modal" style="left: 0.6875em;"><i class="fa fa-save"></i> Save </a>
+							</div>
+						</div>
+					</form>
+				</div>
+				<a class="close-reveal-modal">&#215;</a>			
+			</div>
+			{{/with}}
+		</div>
+		<!-- End Reveal modal -->
+
+		<!-- Reveal modal -->
+		<div id="firstModal_note" class="reveal-modal">
+			<div class="row">
+				<div class="large-12 small-12 columns candidate-list-section">
+					<form>
+						<div class="row">
+							<div class="large-12 columns">						
+								<form name="myform">
+									<textarea name="limitedtextarea" placeholder="Notes goes here" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,140);" 
+									onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,140);"></textarea><br>
+								</form>
+							</div>
+							<div class="large-2 columns">
+								<font size="2">You have <input readonly type="text" name="countdown" size="3" value="140"> characters left.
+									<br><br>
+								</font>
+							</div>
+							<div class="large-12 columns">
+								<a class="close-reveal-modal" style="left: 0.6875em;"><i class="fa fa-file-text"></i> Add Note </a><br>
+							</div>
+						</div>
+					</form>
+				</div>
+				<a class="close-reveal-modal">&#215;</a>	
+			</div>		
+		</div>
+		<!-- End Reveal modal -->
+	</script>
+	<!-- End Private Employer template -->
+
+	<!-- Begin Private Job template-->
+	<script type="text/x-handlebars" id="jobPrivate">
+		<div class="row">
+			<div class="large-12 columns">
+				<div class="row">
+					<div class="large-8 small-12 columns"> 
+						<div class="hr">
+							<h4>Job Information</h4>
+						</div>
+						{{#with content}}
+						<div class="panel info-area">
+							<table class="info-area">
+								<tr>
+									<th width="20%"> Job ID: </th>
+									<td> {{id}} </td>
+								</tr>
+								<tr>
+									<th> Job Title: </th>
+									<td> {{title}} </td>
+								</tr>
+								<tr>
+									<th> Status: </th>
+									<!--<td> <a href="#"> <text onclick="changeStatus()">Opened</button> </a> </td>-->
+									<!-- Default switch -->
+									<!-- Using class options -->
+									<td>
+										<div class="large-4 pull-1 columns">
+											<div class="switch small round">
+												<input id="z1" name="switch-z" type="radio">
+												<label for="z1" onclick="">Closed</label>						
+												<input id="z" name="switch-z" type="radio" checked>
+												<label for="z" onclick="">Open</label>
+												<span></span>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th> Description: </th>
+									<td> {{description}} </td>
+								</tr>
+								<tr>
+									<th> Salary Range: </th>
+									<td> ${{salaryMin}} - ${{salaryMax}} </td>
+								</tr>
+							</table>
+							<ul class="no-bullets">
+								<li>{{#link-to 'jobEdit' this}} <i class="fa fa-pencil-square-o"></i> Edit Info {{/link-to}}</li>
+								<li>{{#link-to 'jobPublic' this}}<i class="fa fa-search"></i> View Public Profile {{/link-to}}</li>
+							</ul>
+						</div>
+						<!-- Job information ends -->
+						{{/with}}
+					<!-- Job Applicants Panel -->
+					<!-- CHART HERE -->
+						<div class="hr">
+							<h4>Job Applicants</h4>
+						</div>
+						<div class="panel info-area">
+							<p>Views: {{content.candidateSummary.viewed}} </p>
+							<div class="row">
+								{{#view App.ChartView contentBinding=content.id}}
+								<div {{bind-attr id="content.id"}} style="align: center; height: 225px; top: -20px;"></div>
+								{{/view}}
+								{{view Ember.Select
+									contentBinding=candidateLists
+									valueBinding=selectedList
+									prompt="Select a list"}}		
+								<br><br>
+								<a {{action 'selectCandidateList'}}> <i class="fa fa-search"></i> View selected list </a>
+							</div>								
+						</div>
+						<!-- Job Applicants Panel ends -->
+						<div class="hr">
+							<h4>Job Distribution</h4>
+						</div>
+						<!-- Job Distribution -->
+						<div class="panel info-area">
+							<table class="job-board">
+								<tr>
+									<th id="job-board-board"> Job Board </th>
+									<th id="job-board-date"> Date Added </th>
+									<th id="job-board-views"> Views </th>
+									<th id="job-board-apps"> Applications </th>
+								</tr>			  
+								{{#each item in content.jobDistributions}}
+								{{#with item}}
+								<tr>
+									<td> {{jobBoard}} </td>
+									<td> {{addedDate}} </td>
+									<td> {{viewed}} </td>
+									<td> {{numOfApplication}} </td>
+								</tr>
+								{{/with}}
+								{{/each}}				
+							</table>
+						</div>
+					</div>
+					<!-- Events Panel -->
+					<div class="large-4 small-12 columns">
+						<div class="hr">
+							<h4>Events</h4>
+						</div>
+						<div class="panel info-area">
+							<h5><a href="#" data-reveal-id="firstModal"><i class="fa fa-file-text"></i> Add Note </a></h5>
+							<ul id="event" class="event-list">
+								{{#each anEvent in content.events}}
+								{{#with anEvent}}
+								<li>
+									<div class="row">
+										<div class="large-6 small-6 columns">
+											{{createdDate}}
+										</div>
+										<div class="large-6 small-6 columns">
+											{{user}}
+										</div>
+									</div>
+									<div class="row">
+										<div class="large-12 small-12 columns">
+											{{content}}
+										</div>
+									</div>
+								</li>
+								{{/with}}
+								{{/each}}
+							</ul>
+						</div>
+					</div>
+					<!-- End Events Panel -->					
+		      	</div>	
+			</div>
+	    </div>
+	    <!-- Reveal modals here -->
+	    <div id="firstModal" class="reveal-modal">
+			<div class="row">
+			  	<div class="large-12 small-12 columns candidate-list-section">
+					<form>
+						<div class="row">
+							<div class="large-12 columns">						
+								<form name="myform">
+									<textarea name="limitedtextarea" placeholder="Notes goes here" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,140);" 
+									onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,140);"></textarea><br>
+								</form>
+							</div>
+							<div class="large-4 columns">
+								<font size="2">You have <input readonly type="text" name="countdown" size="3" value="140"> characters left.
+									<br><br>
+								</font>
+							</div>
+							<div class="large-12 columns">
+								<a class="close-reveal-modal" style="left: 0.6875em;"><i class="fa fa-file-text"></i> Add Note </a><br>
+							</div>
+						</div>
+					</form>
+				</div>
+				<a class="close-reveal-modal">&#215;</a>			
+			</div>
+		</div>
+	    <!-- Reveal modals end here -->
+	</script> 
+	<!-- End Private Job template -->
+
+	<!-- Begin Edit Job template -->
+  	<script type="text/x-handlebars" id="jobEdit">
+	  	<div class="row">
+			<div class="large-12 columns">
+				<h3> Editing Job#{{id}} - {{title}} </h3>
+				<div class="panel info-area">
+					<form method="post" enctype="text/plain">
+						<fieldset>
+							<legend>Job Information</legend>
+							<br>
+							<div class="large-12 columns">
+								<label>Job Title:</label>
+								{{input type="text" name="title" id="title" value=title}}
+							</div>
+							<div class="large-12 columns">
+								<label>Job Description:</label>
+								{{input type="text" name="description" id="description" value=description}}
+							</div>
+							<div class="large-12 columns">
+								<label>Number of Positions:</label>
+								{{input type="text" name="num_of_pos" id="num_of_pos" value=numOfPositions}}
+							</div>
+							<div class="large-12 columns">
+								<label>Required Experience:</label>
+								{{input type="text" name="experience" id="experience" value=experienceReq}}
+							</div>
+							<div class="large-12 columns">
+								<label>Required Education:</label>
+								{{input type="text" name="education" id="education" value=educationReq}}
+							</div>
+							<div class="large-12 columns">
+								<label>Minimum Salary:</label>
+								{{input type="text" name="salary_min" id="salary_min" value=salaryMin}}
+							</div>
+							<div class="large-12 columns">
+								<label>Maximum Salary:</label>
+								{{input type="text" name="salary_max" id="salary_max" value=salaryMax}}
+							</div>
+							<div class="large-12 columns">
+								<label>Other Requirements:</label>
+								{{input type="text" name="other_req" id="other_req" value=otherReq}}
+							</div>
+							<div class="large-12 columns">
+								<label>Job Sector:</label>
+								{{input type="text" name="sectors" id="sectors" value=sectors}}
+							</div>
+						</fieldset>
+						<br>
+						<fieldset>
+							<legend>Location</legend>
+							<br>
+							<div class="large-12 columns">
+								<label>City:</label>
+								{{input type="text" name="city" id="city" value=location.city}}
+							</div>
+							<div class="large-12 columns">
+								<label>State:</label>
+								{{input type="text" name="state" id="state" value=location.state}}
+							</div>
+							<div class="large-12 columns">
+								<label>ZIP:</label>
+								{{input type="text" name="postal_code" id="postal_code" value=location.postalCode}}
+							</div>
+							<div class="large-12 columns">
+								<label>Country:</label>
+								{{input type="text" name="country" id="country" value=location.country}}
+							</div>
+						</fieldset>
+					</form>
+					<h4>{{#link-to 'jobPrivate' this}} <i class="fa fa-save"></i> Save {{/link-to}} &nbsp;&nbsp;</h5>
+				</div>
+			</div>
+		</div>
+  	</script>
+	<!-- End Edit Job template -->
+
+	<!-- Begin Candidate List template -->
+	<script type="text/x-handlebars" id="candidateList">
+		<div class="row">
+			<div class="large-12 small-12 columns candidate-list-section">
+				<h3>
+					{{# if content.jobId}}
+						{{content.category}} Candidates for Job #{{content.jobId}}
+					{{else}}
+						All {{content.category}} Candidates
+					{{/if}}
+				</h3>
+				<table class="candidate-list">
+					<thead>
+						<tr>
+							<th id="candidate-list-app"><center> View </center></th>					
+							<th id="candidate-list-id"> ID </th>
+							<th id="candidate-list-name"> Name </th>
+							<th id="candidate-list-app-date"> Date Applied </th>
+							<th id="candidate-list-status"> Status </th>
+						</tr>
+					</thead>
+						{{#each cand in content.data}}
+						{{#with cand}}
+						<tr class="candidate-list-top">
+							<td rowspan="2"> {{#link-to 'candidate' this}} <font size="5"><center><i class="fa fa-search"></i></center></font> {{/link-to}}</td>
+							<td> {{id}} </td>
+							<td> {{name}} </td>
+							<td> {{appliedDate}} </td>
+							<td>
+								{{view Ember.Select
+								contentBinding=candidateStatusDropdown
+								valueBinding=selectedStatusDropdown}}				
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td colspan="3">
+								<span class="rating">
+								<input type="radio" class="rating-input" {{bind-attr id=ratingInputLabel.five name=id checked=ratingInput.five}} />
+								<label class="rating-star" {{bind-attr for=ratingInputLabel.five}}></label>
+								<input type="radio" class="rating-input" {{bind-attr id=ratingInputLabel.four name=id checked=ratingInput.four}} />
+								<label class="rating-star" {{bind-attr for=ratingInputLabel.four}}></label>
+								<input type="radio" class="rating-input" {{bind-attr id=ratingInputLabel.three name=id checked=ratingInput.three}} />
+								<label class="rating-star" {{bind-attr for=ratingInputLabel.three}}></label>
+								<input type="radio" class="rating-input" {{bind-attr id=ratingInputLabel.two name=id checked=ratingInput.two}} />
+								<label class="rating-star" {{bind-attr for=ratingInputLabel.two}}></label>
+								<input type="radio" class="rating-input" {{bind-attr id=ratingInputLabel.one name=id checked=ratingInput.one}} />
+								<label class="rating-star" {{bind-attr for=ratingInputLabel.one}}></label>	
+								</span>
+							</td>
+						</tr>
+						{{/with}}
+						{{/each}}
+				</table>
+			</div>
+		</div>
+	</script>
+	<!-- End Candidate List template -->
+
+	<!-- Begin Candidate template -->
+	<script type="text/x-handlebars" id="candidate">
+		<div class="row">
+			<div class="large-12 columns">
+				<div class="row">
+					<div class="large-8 small-12 columns"> 
+						<div class="hr">
+							<h4>Candidate Profile - {{content.name}}</h4>
+						</div>
+						<div class="panel info-area">
+							<table class="info-area">
+								<tr>
+									<th width="24%"> Candidate Name: </th>
+									<td> {{content.name}} </td>
+								</tr>
+								<tr>
+									<th> Candidate ID: </th>
+									<td> {{content.id}} </td>
+								</tr>
+								<tr>
+									<th> Position: </th>
+									<td> {{content.position}} </td>
+								</tr>
+								<tr> 
+									<th> Job ID: </th>
+									<td> {{#link-to 'jobPrivate' content}} {{content.jobId}} {{/link-to}} </td>
+								</tr>
+								<tr>
+									<th> Rating: </th>
+									<td><!-- Star system from http://kubyshkin.ru/posts/star-rating-input-pure-css.html  -->
+										<span class="rating">
+											<input type="radio" class="rating-input" id="rating-input-5" {{bind-attr name=content.id checked=ratingInput.five}} />
+											<label for="rating-input-5" class="rating-star"></label>
+											<input type="radio" class="rating-input" id="rating-input-4" {{bind-attr name=content.id checked=ratingInput.four}} />
+											<label for="rating-input-4" class="rating-star"></label>
+											<input type="radio" class="rating-input" id="rating-input-3" {{bind-attr name=content.id checked=ratingInput.three}} />
+											<label for="rating-input-3" class="rating-star"></label>
+											<input type="radio" class="rating-input" id="rating-input-2" {{bind-attr name=content.id checked=ratingInput.two}} />
+											<label for="rating-input-2" class="rating-star"></label>
+											<input type="radio" class="rating-input" id="rating-input-1" {{bind-attr name=content.id checked=ratingInput.one}} />
+											<label for="rating-input-1" class="rating-star"></label>	
+										</span>
+									</td>
+								</tr>
+								<tr>
+									<th> Status: </th>
+									<td> {{content.status}} </td>
+								</tr>
+							</table>							
+							<ul class="no-bullets">
+								<li><a href="#" data-reveal-id="firstModal_edit1"><i class="fa fa-pencil-square-o"></i> Edit </a></li>
+								<li><a href="#"><i class="fa fa-share"><span /></i> Forward Information </a></li>
+								<li><a href="#"><i class="fa fa-th-list"></i> Add to Hot List </a></li>
+							</ul>
+						</div>
+						<div class="hr">
+							<h4>Contact Information</h4>
+						</div>
+						<div class="panel info-area">
+							<table class="info-area">
+								<tr>
+									<th width="24%"> Phone Number: </th>
+									<td> {{content.phoneNumber}} </td>
+								</tr>
+								<tr>
+									<th> E-mail Address: </th>
+									<td> {{content.emailAddress}} </td>
+								</tr>
+								<tr>
+									<th> Date Applied: </th>
+									<td> {{content.appliedDate}} </td>
+								</tr>
+								<tr>
+									<th> Assigned To: </th>
+									<td> {{content.assignedTo}} </td>
+								</tr>
+							</table>
+							<a href="#" data-reveal-id="firstModal_edit2"><i class="fa fa-pencil-square-o"></i> Edit</a>
+						</div>
+					</div>
+					<!-- Event column -->
+					<div class="large-4 small-12 columns">
+						<div class="hr">
+							<h4>Events</h4>
+						</div>
+						<div class="panel info-area">
+							<h5><a href="#" data-reveal-id="firstModal"><i class="fa fa-file-text"></i> Add Note </a></h5>
+							<ul id="event" class="event-list">
+								{{#each anEvent in content.events}}
+								{{#with anEvent}}
+								<li>
+									<div class="row">
+										<div class="large-6 small-6 columns">
+											{{createdDate}}
+										</div>
+										<div class="large-6 small-6 columns">
+											{{user}}
+										</div>
+									</div>
+									<div class="row">
+										<div class="large-12 small-12 columns">
+											{{content}}
+										</div>
+									</div>
+								</li>
+								{{/with}}
+								{{/each}}
+							</ul>
+						</div>
+					</div>
+					<!-- End Event column -->
+				</div>
+			</div>
+		</div>
+		<!-- Reveal modals here -->
+		<div id="firstModal_edit1" class="reveal-modal">
+			<div class="row">
+				<div class="large-12 small-12 columns candidate-list-section">
+					<form>
+						<div class="row">
+							<div class="large-12 columns">
+								<label>Candidate Name:</label>
+								{{input type="text" name="candidate_name" id="candidate_name" value=content.name}}
+							</div>
+							<div class="large-12 columns">
+								<label>Position:</label>
+								{{input type="text" name="position" id="position" value=content.position}}
+							</div>
+							<div class="large-12 columns">
+								<label>Status:</label>
+								{{view Ember.Select
+								contentBinding=candidateStatus
+								valueBinding=selectedStatus}}
+								<br>
+								<br>
+							</div>
+							<div class="large-12 columns">
+								<label>Rating:</label>
+								<span class="rating">
+									<input type="radio" class="rating-input" id="rating-input-5" {{bind-attr name=content.id checked=ratingInput.five}} />
+									<label for="rating-input-5" class="rating-star"></label>
+									<input type="radio" class="rating-input" id="rating-input-4" {{bind-attr name=content.id checked=ratingInput.four}} />
+									<label for="rating-input-4" class="rating-star"></label>
+									<input type="radio" class="rating-input" id="rating-input-3" {{bind-attr name=content.id checked=ratingInput.three}} />
+									<label for="rating-input-3" class="rating-star"></label>
+									<input type="radio" class="rating-input" id="rating-input-2" {{bind-attr name=content.id checked=ratingInput.two}} />
+									<label for="rating-input-2" class="rating-star"></label>
+									<input type="radio" class="rating-input" id="rating-input-1" {{bind-attr name=content.id checked=ratingInput.one}} />
+									<label for="rating-input-1" class="rating-star"></label>	
+								</span>
+							</div>						
+						</div>
+						<div class="row">
+							<div class="large-12 columns">
+								<br>
+								<a class="close-reveal-modal" style="left: 0.6875em;"><i class="fa fa-save"></i> Save </a>
+							</div>
+						</div>
+					</form>
+				</div>
+				<a class="close-reveal-modal">&#215;</a>
+			</div>
+		</div>
+		<!-- Reveal modals end here -->
+		
+		<!-- Reveal modals here -->
+		<div id="firstModal_edit2" class="reveal-modal">
+			{{#with content}}
+			<div class="row">
+				<div class="large-12 small-12 columns candidate-list-section">
+					<form>
+						<div class="row">
+							<div class="large-3 columns">
+							<label>Phone Number:</label>
+							{{input type="text" name="phone_number" id="phone_number" value=phoneNumber}}
+							</div>
+							<div class="large-4 columns">
+								<div class="row collapse">
+									<label>E-mail:</label>
+									<div class="small-9 columns">
+										{{input type="text" name="email_id" id="email_id" value=emailAddress}}
+									</div>
+									<div class="small-3 columns">
+									<!-- <span class="postfix">.com</span> -->
+									</div>
+								</div>
+							</div>
+							<div class="large-5 columns">
+								<label>Assigned To:</label>
+								{{input type="text" name="assignedTo" id="assignedTo" value=assignedTo}}
+							</div>						
+						</div>
+						<div class="row">
+							<div class="large-12 columns">
+								<br>
+								<a class="close-reveal-modal" style="left: 0.6875em;"><i class="fa fa-save"></i> Save </a>
+							</div>
+						</div>
+					</form>
+				</div>
+				<a class="close-reveal-modal">&#215;</a>			
+			</div>	
+			{{/with}}
+		</div>
+		<!-- Reveal modals end here -->			
+							
+		<!-- Reveal modals here -->
+		<div id="firstModal" class="reveal-modal">
+			<div class="row">
+				<div class="large-12 small-12 columns candidate-list-section">
+					<form>
+						<div class="row">
+							<div class="large-12 columns">						
+								<form name="myform">
+									<textarea name="limitedtextarea" placeholder="Enter Notes..." onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,140);" 
+									onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,140);"></textarea><br>
+								</form>
+							</div>
+							<div class="large-2 columns">
+								<font size="2">You have <input readonly type="text" name="countdown" size="3" value="140"> characters left.
+									<br><br>
+								</font>
+							</div>
+							<div class="large-12 columns">
+								<a class="close-reveal-modal" style="left: 0.6875em;"><i class="fa fa-file-text"></i> Add Note </a><br>
+							</div>
+						</div>
+					</form>
+				</div>
+				<a class="close-reveal-modal">&#215;</a>			
+			</div>
+		</div>
+		<!-- Reveal modals end here -->
+	</script>
+	<!-- End Candidate template -->
+
+	<!-- Begin Add Job template -->
+  	<script type="text/x-handlebars" id="addJob">
+	  	<div class="row">
+			<div class="large-12 columns">
+				<h3> Create New Job </h3>
+				<div class="panel info-area">
+					<form method="post" enctype="text/plain">
+						<fieldset>
+							<legend>Job Information</legend>
+							<br>
+							<div class="large-12 columns">
+								<label>Job Title:</label>
+								{{input type="text" name="title" id="title" value=title}}
+							</div>
+							<div class="large-12 columns">
+								<label>Job Description:</label>
+								{{input type="text" name="description" id="description" value=description}}
+							</div>
+							<div class="large-12 columns">
+								<label>Number of Positions:</label>
+								{{input type="text" name="num_of_pos" id="num_of_pos" value=numOfPositions}}
+							</div>
+							<div class="large-12 columns">
+								<label>Required Experience:</label>
+								{{input type="text" name="experience" id="experience" value=experienceReq}}
+							</div>
+							<div class="large-12 columns">
+								<label>Required Education:</label>
+								{{input type="text" name="education" id="education" value=educationReq}}
+							</div>
+							<div class="large-12 columns">
+								<label>Minimum Salary:</label>
+								{{input type="text" name="salary_min" id="salary_min" value=salaryMin}}
+							</div>
+							<div class="large-12 columns">
+								<label>Maximum Salary:</label>
+								{{input type="text" name="salary_max" id="salary_max" value=salaryMax}}
+							</div>
+							<div class="large-12 columns">
+								<label>Other Requirements:</label>
+								{{input type="text" name="other_req" id="other_req" value=otherReq}}
+							</div>
+							<div class="large-12 columns">
+								<label>Job Sector:</label>
+								{{input type="text" name="sectors" id="sectors" value=sectors}}
+							</div>
+						</fieldset>
+						<br>
+						<fieldset>
+							<legend>Location</legend>
+							<br>
+							<div class="large-12 columns">
+								<label>City:</label>
+								{{input type="text" name="city" id="city" value=location.city}}
+							</div>
+							<div class="large-12 columns">
+								<label>State:</label>
+								{{input type="text" name="state" id="state" value=location.state}}
+							</div>
+							<div class="large-12 columns">
+								<label>ZIP:</label>
+								{{input type="text" name="postal_code" id="postal_code" value=location.postalCode}}
+							</div>
+							<div class="large-12 columns">
+								<label>Country:</label>
+								{{input type="text" name="country" id="country" value=location.country}}
+							</div>
+						</fieldset>
+					</form>
+					<h4>{{#link-to 'employerPrivate' this}} <i class="fa fa-plus-square"></i> Post New Job {{/link-to}} &nbsp;&nbsp;</h5>
+				</div>
+			</div>
+		</div>
+  	</script>
+	<!-- End Add Job template -->
+
+
+	<!-- MARK: End content -->
+
+	<!-- Include this section in every file -->
+	<script>
+	    document.write('<script src=' +
+	      ('__proto__' in {} ? 'libs/Foundation/js/vendor/zepto' : 'libs/Foundation/js/vendor/jquery') +
+	      '.js><\/script>')
+	</script>
+	<script src="libs/Foundation/js/foundation.min.js"></script>
+	<script>	    
+		$(function() {
+		  $(document).foundation();
+		});
+	</script>
+	<!-- End of section -->
+</body>
+</html>

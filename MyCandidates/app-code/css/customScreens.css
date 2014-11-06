@@ -1,0 +1,49 @@
+/* Foundation Block Grids for below medium */
+@media only screen and (max-width: 1279px) {
+  body, nav.top-bar, .top-bar .title-area .name{
+    font-size: small;
+  }
+  
+   h5{
+    padding-top: 0px;
+  } 
+}
+
+/* Styles for screens that are atleast 768px; */
+@media only screen and (min-width: 768px) {
+}
+
+/* Medium Displays: 768px - 1279px */
+@media only screen and (min-width: 768px) {
+
+   h5{
+    padding-top: 4px;
+  } 
+}
+
+/* Large Displays: 1280px - 1440px */
+@media only screen and (min-width: 1280px) {
+}
+
+/* X-Large Displays: 1400px and up */
+@media only screen and (min-width: 1440px) {
+}
+
+@media only screen and (orientation: landscape) {
+}
+
+@media only screen and (orientation: portrait) {
+}
+
+/* Foundation Block Grids for above small breakpoint */
+@media only screen and (min-width: 768px) {
+}
+
+/* Not sure what screen size is this */
+@media only screen and (min-width: 940px) {
+}
+
+@media (max-width: 600px) {
+  .large-only { display: none; }
+  .stacktable.small-only { display: table; }
+}
